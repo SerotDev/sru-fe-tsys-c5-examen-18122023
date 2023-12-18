@@ -11,7 +11,8 @@ import { RouterLink } from '@angular/router';
 })
 export class SeriesComponent {
   private apiKey: string = '6687b3ba5af922bd54a96cd8e0c06076';
-  private apiUrl: string = 'https://api.themoviedb.org/3/discover/tv';
+  private random_number: number = Math.trunc(Math.random()*500 +1);
+  private apiUrl: string = `https://api.themoviedb.org/3/discover/tv?page=${this.random_number}`;
 
   public series: any[] = [];
   public loaded: boolean = false;
@@ -20,7 +21,7 @@ export class SeriesComponent {
 
   ngOnInit() {
     // Construir la URL con la clave de la API
-    const url = `${this.apiUrl}?api_key=${this.apiKey}`;
+    const url = `${this.apiUrl}&api_key=${this.apiKey}`;
 
     // Hacer la solicitud HTTP
     this.http.get(url).subscribe(

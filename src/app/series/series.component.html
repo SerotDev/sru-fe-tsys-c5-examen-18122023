@@ -1,0 +1,21 @@
+<h1 class="pb-3">Lista de Series de TV</h1>
+<hr>
+@if ( loaded) {
+<div class="row justify-content-center">
+    @for (serie of series; track $index) {
+    <div class="card m-2 col-12 col-sm-4 col-lg-2">
+        <img class="card-img-top mt-3" [src]="'https://image.tmdb.org/t/p/w500' + serie.poster_path"
+            alt="Card image cap" />
+        <div class="card-body">
+            <p class="card-title"><b>{{ serie.title }}</b></p>
+            <p class="card-text text-center">{{ serie.release_date }}</p>
+            <div class="text-center">
+                <a [routerLink]="['/serie/', serie.id]" class="btn btn-warning">Ver más</a>
+            </div>
+        </div>
+    </div>
+    }
+</div>
+}@else {
+<h1 class="text-center"><i class="fas fa-spinner fa-pulse" aria-hidden="true"></i> Loading...</h1>
+}

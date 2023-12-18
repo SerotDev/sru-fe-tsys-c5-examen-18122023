@@ -1,0 +1,36 @@
+import { Component, OnInit } from '@angular/core';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { RouterLink } from '@angular/router';
+
+@Component({
+  selector: 'app-series',
+  standalone: true,
+  imports: [HttpClientModule, RouterLink],
+  templateUrl: './series.component.html',
+  styleUrl: './series.component.css'
+})
+export class SeriesComponent {
+  private apiKey: string = '6687b3ba5af922bd54a96cd8e0c06076';
+  private apiUrl: string = 'https://api.themoviedb.org/3/discover/tv';
+
+  public series: any[] = [];
+  public loaded: boolean = false;
+
+  constructor(private http: HttpClient) {}
+
+  ngOnInit() {
+    // Construir la URL con la clave de la API
+    const url = `${this.apiUrl}?api_key=${this.apiKey}`;
+
+    // Hacer la solicitud HTTP
+    this.http.get(url).subscribe(
+      (result: any) => {
+        this.series = result.results;
+        this.loaded = true;
+      },
+      (error) => {
+        console.error('Error al recuperar datos de la API de The Movie Database', error);
+      }
+    );
+  }
+}

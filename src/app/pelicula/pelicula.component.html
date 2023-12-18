@@ -1,0 +1,20 @@
+@if (loaded) {
+<div class="text-center">
+    <img class="card-img-top img-style" src="https://image.tmdb.org/t/p/w500{{ pelicula.poster_path }}" alt="{{ pelicula.title }}" />
+</div>
+<div class="card-body text-center">
+    <h5 title="{{ pelicula.status }}" class="card-title">
+        <b>{{ pelicula.title }} {{ pelicula.status }}</b>
+    </h5>
+</div>
+<ul class="list-group list-group-flush">
+    <li class="list-group-item">
+        <p><strong>Estado:</strong> {{ pelicula.status }}</p>
+    </li>
+    <li class="list-group-item">
+        <p><strong>Descripción:</strong> {{ pelicula.overview }}</p>
+    </li>
+</ul>
+} @else {
+<h1 class="text-center"><i class="fas fa-spinner fa-pulse" aria-hidden="true"></i> Cargando...</h1>
+}
